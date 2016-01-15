@@ -2,7 +2,6 @@ def random_number_generator(number)
   Proc.new{(0..number).map{|num| num}.sample}
 end
 
-
 class Character
   def initialize
     @character_health = health
@@ -12,7 +11,6 @@ class Character
     health = 120
   end
 end
-
 
 class Attacker
   def initialize
@@ -40,8 +38,8 @@ class Knife_Fight
 
   def outcome
     if number != 0
-      "Oh no!! You've lost #{stab_damage.to_s} hp! You've been stabbed #{number.to_s} time" +
-      "#{"s" if number > 1}."
+      "Oh no!!  You've been stabbed #{number.to_s} time" +
+      "#{"s" if number > 1}. You've lost #{stab_damage.to_s} hp!"
     else
       "You manage to run away unscathed."
     end
@@ -52,14 +50,20 @@ def event
   event = Knife_Fight.new
   character = Character.new
   attacker = Attacker.new
+  puts "You are walking briskly down the forest path, minding your own business."
+  puts "Suddenly a figure steps into the path deliberately."
+  puts "It's an angry " + ["elf", "dwarf", "pixie", "giant", "imp", "centaur", "monkey", "elemental"].sample +
+  ", holding a knife! He must have a real grudge because he swings at you without hesitation.."
+  puts "------------------------"
   puts event.outcome
-  "Your health is now #{character.health - event.calculate_damage.to_i} hp."
+  "Your health is now #{character.health - event.calculate_damage.to_i} hp..."
 end
 
 puts event
 
 
-#add a character class with a life count
 #make sure character can die
 #find a way for character to fight back?
 #add luck modifier
+#add weapons
+#make interactive
