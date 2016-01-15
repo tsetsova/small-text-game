@@ -5,18 +5,19 @@ end
 class Knife_Fight
   def initialize
    @number = random_number_generator(10).call
-   @health = health
-   @damage = (random_number_generator(10).call) * @number
+   @attacker_health = health
+   @stab_damage = (random_number_generator(10).call) * @number
   end
 
-  attr_reader :number, :damage
+  attr_reader :number, :stab_damage
 
   def health
     health = 300
   end
 
-  def damage_caused
-    "You've lost #{damage.to_s} hp!"
+  def damage_caused_by_attacker
+    "You've lost #{stab_damage.to_s} hp!"
+    stab_damage
   end
 
   def stabs
@@ -25,16 +26,28 @@ class Knife_Fight
   end
 end
 
+class Character
+  def initialize
+    @character_health = health
+  end
 
+  def health
+    health = 400
+  end
+end
 
 attacker = Knife_Fight.new
-
+character = Character.new
 puts attacker.stabs
-puts attacker.damage_caused
+puts attacker.damage_caused_by_attacker
+
+puts character.health - attacker.damage_caused_by_attacker.to_i
+
+
 
 
 #add a character class with a life count
-#add damage to stabs
+#add stab_damage to stabs
 #make sure character can die
 #find a way for character to fight back?
 #give attaker ability to die
