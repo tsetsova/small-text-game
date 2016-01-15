@@ -6,18 +6,19 @@ class Knife_Fight
   def initialize
    @number = random_number_generator(10).call
    @attacker_health = health
-   @stab_damage = (random_number_generator(10).call) * @number
+   damage = []
+   @number.times {damage << random_number_generator(10).call}
+   @stab_damage = damage.reduce(:+)
   end
 
   attr_reader :number, :stab_damage
 
   def health
-    health = 300
+    health = 100
   end
 
   def damage_caused_by_attacker
     "You've lost #{stab_damage.to_s} hp!"
-    stab_damage
   end
 
   def stabs
@@ -32,23 +33,21 @@ class Character
   end
 
   def health
-    health = 400
+    health = 120
   end
 end
 
-attacker = Knife_Fight.new
-character = Character.new
-puts attacker.stabs
-puts attacker.damage_caused_by_attacker
+def event
+  attacker = Knife_Fight.new
+  character = Character.new
+  puts attacker.stabs
+  puts "Your health is now #{character.health - attacker.damage_caused_by_attacker.to_i} hp."
+end
 
-puts character.health - attacker.damage_caused_by_attacker.to_i
-
-
+puts event
 
 
 #add a character class with a life count
-#add stab_damage to stabs
 #make sure character can die
 #find a way for character to fight back?
-#give attaker ability to die
 #add luck modifier
