@@ -38,7 +38,7 @@ class Knife_Fight
 
   def outcome
     if number != 0
-      "Oh no!!  You've been stabbed #{number.to_s} time" +
+      "Oh no!! You've been stabbed #{number.to_s} time" +
       "#{"s" if number > 1}. You've lost #{stab_damage.to_s} hp!"
     else
       "You manage to run away unscathed."
@@ -51,9 +51,9 @@ def event
   character = Character.new
   attacker = Attacker.new
   puts "You are walking briskly down the forest path, minding your own business."
-  puts "Suddenly a figure steps into the path deliberately."
+  puts "Suddenly a figure steps onto the path deliberately, attempting to look large and threatening."
   puts "It's an angry " + ["elf", "dwarf", "pixie", "giant", "imp", "centaur", "monkey", "elemental"].sample +
-  ", holding a knife! He must have a real grudge because he swings at you without hesitation.."
+  " with a knife! He must have a real grudge because he swings at you without hesitation.."
   puts "------------------------"
   puts event.outcome
   "Your health is now #{character.health - event.calculate_damage.to_i} hp..."
@@ -65,5 +65,6 @@ puts event
 #make sure character can die
 #find a way for character to fight back?
 #add luck modifier
+#add gender to attacker
 #add weapons
 #make interactive
